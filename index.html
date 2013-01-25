@@ -1,1 +1,28 @@
-hello world
+<!DOCTYPE html>
+<html>
+ <head>
+     <meta charset="UTF-8"/>
+     <title>online install</title>
+     <script type="text/javascript">
+     function install() {
+         var link = document.getElementById("link");
+         //var request = window.navigator.mozApps.install("http://demos.chyblog.com/testapp/manifest.webapp");
+         //alert(link.value);
+         var request = window.navigator.mozApps.install(link.value);
+         request.onsuccess = function() {
+             // Save the App object that is returned
+             var appRecord = this.result;
+             alert('Installation successful!')
+         };
+         request.onerror = function() {
+             // Display the error information from the DOMError object
+             alert('Install failed, error: ' + this.error.name);
+         };
+     }
+     </script>
+ </head>
+ <body>
+    <input id="link" type="input" style="width:280px"> 
+     <input type="button" value="安装应用" onclick="install()"/><br>
+ </body>
+</html>
